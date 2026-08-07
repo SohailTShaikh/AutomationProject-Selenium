@@ -82,6 +82,13 @@ public class CheckoutPage {
     }
 
     public boolean isOrderPlaced() {
-        return wait.waitForVisibility(orderPlaced).isDisplayed();
+        try {
+            wait.waitForVisibility(
+                    By.xpath("//p[contains(text(),'order has been placed successfully')]")
+            );
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

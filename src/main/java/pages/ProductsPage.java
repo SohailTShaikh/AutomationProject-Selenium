@@ -36,13 +36,11 @@ public class ProductsPage {
         wait = new WaitUtils(driver);
     }
 
+    private By continueShopping =
+            By.xpath("//button[contains(text(),'Continue Shopping')]");
+
     public boolean isProductsPageVisible() {
         return wait.waitForVisibility(productsTitle).isDisplayed();
-    }
-
-    public void searchProduct(String product) {
-        wait.waitForVisibility(searchInput).sendKeys(product);
-        wait.waitForClickable(searchButton).click();
     }
 
     public boolean isSearchedProductsVisible() {
@@ -81,13 +79,6 @@ public class ProductsPage {
         wait.waitForClickable(continueShopping).click();
     }
 
-//    public void clickViewCart() {
-//        By viewCart =
-//                By.xpath("//u[contains(.,'View Cart')]");
-//
-//        wait.waitForClickable(viewCart).click();
-//    }
-
     public CartPage clickViewCart() {
         By viewCart =
                 By.xpath("//u[contains(normalize-space(.),'View Cart')]");
@@ -95,5 +86,20 @@ public class ProductsPage {
         wait.waitForVisibility(viewCart).click();
 
         return new CartPage(driver);
+    }
+
+    public void searchProduct(String productName) {
+        By searchBox = By.id("search_product");
+        By searchButton = By.id("submit_search");
+
+        wait.waitForVisibility(searchBox).sendKeys(productName);
+        wait.waitForClickable(searchButton).click();
+    }
+
+    public boolean isSearchResultsVisible() {
+        By searchedProducts =
+                By.xpath("//h2[contains(normalize-space(.),'Searched Products')]");
+
+        return wait.waitForVisibility(searchedProducts).isDisplayed();
     }
 }

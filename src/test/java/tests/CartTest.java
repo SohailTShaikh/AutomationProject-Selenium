@@ -88,4 +88,27 @@ public class CartTest extends BaseTest {
                 cartPage.isCartEmpty()
         );
     }
+
+    @Test
+    public void verifyMultipleProductsInCart() {
+
+        HomePage homePage = new HomePage(driver);
+
+        ProductsPage productsPage =
+                homePage.clickProducts();
+
+        productsPage.hoverAndAddProduct(0);
+
+        productsPage.clickContinueShopping();
+
+        productsPage.hoverAndAddProduct(1);
+
+        CartPage cartPage =
+                homePage.clickCart();
+
+        assertEquals(
+                2,
+                cartPage.getCartProductCount()
+        );
+    }
 }
