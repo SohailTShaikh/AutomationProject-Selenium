@@ -13,11 +13,9 @@ public class ProductTest extends BaseTest {
     @Test
     public void verifyProducts() {
 
-        HomePage homePage =
-                new HomePage(driver);
+        HomePage homePage = new HomePage(driver);
 
-        ProductsPage productsPage =
-                homePage.clickProducts();
+        ProductsPage productsPage = homePage.clickProducts();
 
         assertTrue(
                 productsPage.isProductsPageVisible()
@@ -60,19 +58,10 @@ public class ProductTest extends BaseTest {
         ProductDetailsPage productDetails =
                 productsPage.clickFirstProduct();
 
-        assertTrue(
-                productDetails.getProductName()
-                        .length() > 0
-        );
+        assertTrue(productDetails.getProductName().length() > 0);
 
-        assertTrue(
-                productDetails.getCategory()
-                        .length() > 0
-        );
+        assertTrue(productDetails.getCategory().length() > 0);
 
-        assertTrue(
-                productDetails.getPrice()
-                        .length() > 0
-        );
+        assertTrue(productDetails.getPrice().length() > 0);
     }
 }

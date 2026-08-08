@@ -41,10 +41,8 @@ public class HomePage {
         wait = new WaitUtils(driver);
     }
 
-    public LoginPage clickSignupLogin() {
-        wait.waitForClickable(signupLogin).click();
-        return new LoginPage(driver);
-    }
+    private By home =
+            By.xpath("//a[contains(text(),'Home')]");
 
     public void logout() {
         wait.waitForClickable(logout).click();
@@ -53,20 +51,6 @@ public class HomePage {
     public void deleteAccount() {
         wait.waitForClickable(deleteAccount).click();
         wait.waitForUrlContains("delete_account");
-    }
-
-    public ProductsPage clickProducts() {
-        wait.waitForClickable(products).click();
-        return new ProductsPage(driver);
-    }
-
-    public CartPage clickCart() {
-        wait.waitForClickable(cart).click();
-        return new CartPage(driver);
-    }
-
-    public void clickContactUs() {
-        wait.waitForClickable(contactUs).click();
     }
 
     public void clickTestCases() {
@@ -90,5 +74,28 @@ public class HomePage {
         String text = driver.findElement(By.tagName("body")).getText();
 
         return text.matches("(?s).*ACCOUNT\\s+DELETED.*");
+    }
+
+    public ProductsPage clickProducts() {
+        wait.waitForClickable(products).click();
+        return new ProductsPage(driver);
+    }
+
+    public LoginPage clickSignupLogin() {
+        wait.waitForClickable(signupLogin).click();
+        return new LoginPage(driver);
+    }
+
+    public CartPage clickCart() {
+        wait.waitForClickable(cart).click();
+        return new CartPage(driver);
+    }
+
+    public void clickContactUs() {
+        wait.waitForClickable(contactUs).click();
+    }
+
+    public boolean isHomeVisible() {
+        return wait.waitForVisibility(home).isDisplayed();
     }
 }

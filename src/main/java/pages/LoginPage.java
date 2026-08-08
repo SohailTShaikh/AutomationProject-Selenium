@@ -101,4 +101,10 @@ public class LoginPage {
     public boolean isLoginSuccessful() {
         return driver.getCurrentUrl().equals("https://www.automationexercise.com/");
     }
+
+    public boolean isLoginFormVisible() {
+        return wait.waitForVisibility(
+                By.xpath("//h2[contains(text(),'Login to your account')]")
+        ).isDisplayed();
+    }
 }
